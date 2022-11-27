@@ -58,8 +58,6 @@ class Othello:
             self.current_turn = -self.current_turn
 
         return ans
-        # if there is a or more than one valid moves. then modify the related grid in the self. board and return True
-        # if no valid moves then self.stalemate add 1 and return False
 
     def is_valid(self, grid, color):
         (row, col) = grid
@@ -69,7 +67,6 @@ class Othello:
             return False
 
     def move(self, grid):
-
         while self.valid_move:
             (r, c) = self.valid_move.pop()
             self.board[r][c] = 0
@@ -89,6 +86,7 @@ class Othello:
         return
 
     def get_reversi_choice(self, grid):
+        # see how many reversi choice are there, and the player could only flip over in one direction
         (row, col) = grid
         for (x, y) in DIRECTION:
             r, c = row + x, col + y
@@ -133,13 +131,13 @@ class Othello:
                 self.black_set.remove((g[0], g[1]))
 
         self.board = [[j if j != REVERSI_CHOICE else -self.current_turn for j in i] for i in self.board]
-
+        self.reversi_choice.clear()
         self.current_turn = -self.current_turn
         return
 
     def is_end(self):
-
-        if self.black_count + self.white_count == SIZE*SIZE or self.stalemate == 2:
+        # there are two situations could end the game, if so, call the win_loss to give the winner.
+        if self.black_count + self.white_count == SIZE * SIZE or self.stalemate == 2:
             self.win_loss()
             return True
         else:
