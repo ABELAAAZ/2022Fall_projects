@@ -1,5 +1,6 @@
-# 2022Fall_projects
+# New Reversi game 
 
+Members: Yanying Yu/ yanying6    Billhonam Wong/ bhwong3  
 Each project from this semester is a public fork linked from this repository.  This is just one of the many assignments students worked on for the course, but this is the *only* one they are permitted to publish openly.
 
 ## Final Project Expectations:
