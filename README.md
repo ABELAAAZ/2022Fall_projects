@@ -1,32 +1,57 @@
-# New Reversi game 
+# New Reversi game (Othello)
 
-Members: Yanying Yu/ yanying6    Billhonam Wong/ bhwong3  
-Each project from this semester is a public fork linked from this repository.  This is just one of the many assignments students worked on for the course, but this is the *only* one they are permitted to publish openly.
+**Members**:     
+Yanying Yu/ yanying6    
+Billhonam Wong/ bhwong3    
 
-## Final Project Expectations:
+## Description:  
+**project type**:  2    
+**Flexiblity**:    
+AI vs AI, human vs AI, human vs human.      
+If there is at least one AI player, you are allowed to set the MAX_DEPTH as the difficulty (Default: 1) in the reversi_gme.py. 
 
-You have considerable flexibility about specifics and you will publish your project openly (as a fork from here) to allow making it part of your portfolio if you choose.  You may work alone or in a team of two students. 
-
-Regardless of topic, it must involve notable amounts of original work of your own, though it can of course use existing libraries or be inspired by or adapted from some other published work(s). 
-
-PLAGIARISM IS NOT ACCEPTABLE. From the first commit through all production of documentation and code, it must be crystal clear which, if any, parts of the project were based on or duplicated from any other source(s) all of which must be cited.  This should be so specific that any evaluator can tell which lines of code are original work and which aren't.  Same for all written narrative, documentation, images, significant algorithms, etc.
-
-## Project Types you may choose:
-
-(Making original _variations_ of puzzles and games isn't as difficult as it may seem -- we'll discuss this in class. _Though admittedly, making *good* game variations -- that are well-balanced, strategically interesting, with good replay value_ can take expertise or luck and play-testing with revisions.  Such balanced elegance is desirable but might not be achievable here, given the short time you have.)
-
-1. Devise your own new _original_ type of logic puzzle or an _original variation_ of existing puzzle type. Like with previous homework, your program should be able to randomly generate many puzzles of your type and to verify that all puzzles generated comply with the standard meta-rule that only one valid solution exists. It needs to output the unsolved puzzles in a way that a human can print or view them conveniently to try solving them and to somehow output (to file?) or display the solution for each puzzle when requested, so as not to spoil the challenge. An interactive UI to "play" the puzzles interactively is *not* required.
-
-2. OR develop an AI game player for an _original variation_ of some existing strategy game.  If you do this, it needs to be set up so it can either play computer-vs-computer and/or against human players with a reasonable text or graphical UI. 2B. If two teams want to independently develop AI players for the same type of game variant as each other (but using different algorithms, strategies, and/or data structures) so they can compete, that is okay.  A sub-variation is to enable this game type on our course game server, discuss with the instructor if this is of interest.
-
-3. OR Computationally 'Solve' a game.  _Background: Some strategic games, especially those of perfect information are known to be "solved". See https://en.wikipedia.org/wiki/Solved_game, which we discussed in class._  Sometimes these proofs are done through mathematical analysis, other times through exhaustive computational verification. If you choose this option, you can either write your own code or modify some existing code that plays a game, to exhaustively analyze a game to attempt to prove if it is "solved" in this way for certain configurations. Changes to rules or conditions of a known solved game can alter this outcome and require reanalysis.
+**The original rules**:    
+At the start of the game there are four pieces on the board, two white and two black. You must try to capture opponent pieces and flip them over so they turn into your color. You do this by making a horizontal, vertical, or diagonal line of pieces, where your pieces surround the other player's pieces. The surrounded opponent pieces are then captured and will be flipped over to your color, increasing the number of your pieces on the board. ( See the details and have a try: https://cardgames.io/reversi/ )    
+### New Game rules:   
+#### **1. Reversi in one direction**        
+unlike flip over the opponent' s pieces in all eight directions, our game allow the player to flip over pieces in only **one** direction. So after you drop your piece, the program will show all the valid reversi direction and ask you to choose one direction to flip over.       
+      
+As the gif below: Now it's BLACK's turn, the grey areas are valid place to drop the piece, after dropping the piece, the orange pieces are the valid pieces you can flip over, the information on the top of the piece represents the direction(U:up, D:down, L:left, R:right) so we know in this case,we can choose L direction to flip two pieces over, or one in UL or one in U.   
+![gif3_reversi choice](https://user-images.githubusercontent.com/57131147/205403834-52d17a9b-d519-4ffc-a057-09d0a84808bb.gif)
 
 
-## Deliverables and other Requirements:
+#### **2. Reward**      
+if along the choosed direction, you used only one piece to block opponents' piece(s), then you will receive an reward: Continuing the tail in this direction, if there is a possible reversi choice, the program will automatically flip over the opponent' pieces.    
+      
+As the gif below, now it's WHITE's turn, the grey areas are valid place to drop the piece, after dropping the piece, we can choose L direction to flip two pieces + one reward piece over, or one in UL or one in U.          
+![gif2_reward](https://user-images.githubusercontent.com/57131147/205404769-faacbb14-4412-47b0-b0b1-3a5d43ab3036.gif)
 
-* Have some fun!
-* In your own fork, please replace this README.md file's contents with a good introduction to your own project. 
-* Targeted Algorithm Analysis:  Regardless of which option you choose, you need to _describe the performance characteristics of some critical parts of your program and explain why you chose the data structures and core algorithm(s) you did_. So for example, if you chose Type #1, what's the Big-O, Big-Theta, or Big-Omega run-time complexity of your puzzle solver? Or the puzzle generator? If you're doing Type #2 and using minimax or similar, what's the complexity of your heuristic evaluation function?  
-* Performance Measurement: Supplement the analysis above with run-time measurements of multiple iterations of the game or puzzles as discussed in class.
-* If your team has more than one student, see that everyone makes substantial git commits. In addition, your README documentation should include a summary of how you shared the work.
-* Live in-class presentation & demonstration of your work.
+
+or in other word:    
+In the following two cases, only first two black pieces could be flipped over. Because WHITE used two pieces to block the BLACK's pieces, WHITE could not get the reward.    
+![微信图片_20221202173018](https://user-images.githubusercontent.com/57131147/205407679-f55d5edb-943f-4cf8-b2bc-5a5b8cf4537e.jpg)
+
+![微信图片_20221202173757](https://user-images.githubusercontent.com/57131147/205409518-c718f2a7-db6f-44a4-a83d-b27248dfc3b6.jpg)
+
+
+In this case, four black pieces could be flipped over, the two black pieces with red check mark were flipped over by the reward.   
+![微信图片_202212021730182](https://user-images.githubusercontent.com/57131147/205407730-500eabaa-433d-41fc-beff-f923652b663a.jpg)
+
+
+## MiniMax Analysis:   
+TODO
+   
+   
+
+   
+## How to run program:   
+1. First clone our program in your local device.Make sure you have pip install all requirement packages(pygame).      
+2. Run Reversi_game.py, follow the console step to enter specific information.   
+![image](https://user-images.githubusercontent.com/57131147/205402389-61660ea6-e4e3-4e28-92f3-f1697542b0fa.png)
+
+4. Then enjoy the game in the pop out window.    
+![image](https://user-images.githubusercontent.com/57131147/205402413-03074bac-267f-45d8-bff5-13315cf8b99d.png)
+
+
+## Time and Space complexity:   
+
