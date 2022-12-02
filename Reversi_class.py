@@ -7,24 +7,19 @@ SIZE = 8
 
 
 class Othello:
-    def __init__(self):
-        #self.board = [[BLACK for _ in range(SIZE)] for _ in range(SIZE)]
-        #self.board[5][7], self.board[7][7] ,self.board[7][0]= WHITE, 0,0
+    def __init__(self, black_ai, white_ai):
         self.board = [[0 for _ in range(SIZE)] for _ in range(SIZE)]
         self.board[3][3], self.board[4][4] = BLACK, BLACK
         self.board[3][4], self.board[4][3] = WHITE, WHITE
-
-        self.black_count = 2 # 2
+        self.black_count = 2
         self.white_count = 2
-        self.black_ai = False
-        self.white_ai = True
+        self.black_ai = black_ai
+        self.white_ai = white_ai
         self.winner = None
         self.current_turn = BLACK
-
-        self.black_set ={(3, 3), (4, 4)}
-        #self.white_set ={(5,7)}  #
-        self.white_set ={(3, 4), (4, 3)}
-        self.valid_move = set()  # {(2, 4), (3, 5), (4, 2), (5, 3)}
+        self.black_set = {(3, 3), (4, 4)}
+        self.white_set = {(3, 4), (4, 3)}
+        self.valid_move = set()
         self.reversi_choice = dict()
         self.stalemate = 0
 
@@ -88,7 +83,6 @@ class Othello:
             self.white_count += 1
 
         self.get_reversi_choice(grid)
-
         return
 
     def get_reversi_choice(self, grid):
@@ -135,14 +129,12 @@ class Othello:
             else:
                 self.white_set.add((g[0], g[1]))
                 self.black_set.remove((g[0], g[1]))
-
         self.board = [[j if j != REVERSI_CHOICE else -self.current_turn for j in i] for i in self.board]
         self.reversi_choice.clear()
         self.current_turn = -self.current_turn
         return
 
     def unmake_reversi(self, choice):
-
         if self.current_turn == BLACK:
             self.black_count -= len(self.reversi_choice[choice])
             self.white_count += len(self.reversi_choice[choice])
@@ -160,9 +152,7 @@ class Othello:
             else:
                 self.black_set.add((g[0], g[1]))
                 self.white_set.remove((g[0], g[1]))
-
         return
-
 
     def is_end(self):
         # there are two situations could end the game, if so, call the win_loss to give the winner.

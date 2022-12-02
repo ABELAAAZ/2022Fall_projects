@@ -1,8 +1,11 @@
-BLACK = 1
-WHITE = -1
+
 from math import inf
 import copy
-from GUI import MAX_DEPTH
+from Reversi_game import MAX_DEPTH
+
+BLACK = 1
+WHITE = -1
+
 
 def evaluate(game, maximizing_color):
     black_score = 0
