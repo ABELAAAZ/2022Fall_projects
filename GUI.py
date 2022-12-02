@@ -1,6 +1,8 @@
+import copy
+import random
 import pygame
 from Othello import Othello
-import pygame.freetype
+import MiniMax
 
 WIDTH = 600
 HEIGHT = 600
@@ -12,9 +14,9 @@ WHITE = -1
 VALID_MOVE = 2
 REVERSI_CHOICE = 3
 PIECE_COLOR = {BLACK: (0, 0, 0), WHITE: (254, 254, 244), VALID_MOVE: (128, 128, 128), REVERSI_CHOICE: (242, 133, 0)}
-DIRECTION_NO = {(-1, 0): "1", (1, 0): "2", (0, -1): "3", (0, 1): "4", (1, 1): "5", (1, -1): "6", (-1, -1): "7",
-                (-1, 1): "8"}
-
+DIRECTION_NO = {(0, -1): "L", (0, 1): "R", (-1, 0): "U", (1, 0): "D", (1, 1): "DR", (-1, 1): "UR", (-1, -1): "UL",
+                (1, -1): "DL"}
+MAX_DEPTH = 3
 
 def draw(surf, board, turn, is_reversi=False, choices=None):
     surf = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -37,7 +39,7 @@ def draw(surf, board, turn, is_reversi=False, choices=None):
     for i in range(8):
         for j in range(8):
             if board[i][j] != 0:
-                pygame.draw.circle(surf, PIECE_COLOR[board[i][j]], ((i + 1 + 0.5) * GRID, (j + 1 + 0.5) * GRID),
+                pygame.draw.circle(surf, PIECE_COLOR[board[i][j]], ((j + 1 + 0.5) * GRID, (i + 1 + 0.5) * GRID),
                                    PIECE_RADIUS,
                                    width=PIECE_RADIUS)
 
@@ -49,7 +51,7 @@ def draw(surf, board, turn, is_reversi=False, choices=None):
                 (r, c) = grid
                 textnumber = f_reversi.render(f"{DIRECTION_NO[k]}", True, (0, 0, 0))
                 textnumberreact = textnumber.get_rect()
-                textnumberreact.center = ((r + 1 + 0.5) * GRID, (c + 1 + 0.5) * GRID)
+                textnumberreact.center = ((c + 1 + 0.5) * GRID, (r + 1 + 0.5) * GRID)
                 surf.blit(textnumber, textnumberreact)
 
     return surf
@@ -112,49 +114,76 @@ def start_game():
     wait_move(game, screen)
 
 
+
 def wait_move(game, screen):
-    waiting_move = True
+    # print(game.current_turn)
+    # for i in game.board:
+    #     print(i)
+
     if not game.get_valid_moves():
+        if game.is_end():
+            show_result(screen, game)
         wait_move(game, screen)
     draw(screen, game.board, game.current_turn)
     pygame.display.flip()
 
-    while waiting_move:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                exit()
-            if event.type == pygame.MOUSEBUTTONUP:
-                grid = get_location((event.pos[0], event.pos[1]))
-
-                if game.is_valid(grid, VALID_MOVE):
-                    game.move(grid)
-                    draw(screen, game.board, game.current_turn, True, game.reversi_choice)
-                    pygame.display.flip()
-                    waiting_move = False
+    if (game.current_turn == BLACK and game.black_ai is True) or (game.current_turn == WHITE and game.white_ai is True):
+        # game.move(random.sample(game.valid_move, 1)[0])
+        best_move = MiniMax.minimax(copy.deepcopy(game), MAX_DEPTH, True, game.current_turn)[0]
+        game.move(best_move)
+        draw(screen, game.board, game.current_turn, True, game.reversi_choice)
+        pygame.display.flip()
+    else:
+        waiting_move = True
+        while waiting_move:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    exit()
+                if event.type == pygame.MOUSEBUTTONUP:
+                    if not GRID <= event.pos[1] < HEIGHT - GRID or not GRID <= event.pos[0] < WIDTH - GRID:
+                        print('Not a board grid')
+                        continue
+                    grid = get_location((event.pos[1], event.pos[0]))
+                    if game.is_valid(grid, VALID_MOVE):
+                        game.move(grid)
+                        draw(screen, game.board, game.current_turn, True, game.reversi_choice)
+                        pygame.display.flip()
+                        waiting_move = False
     wait_reversi(game, screen)
 
-
 def wait_reversi(game, screen):
-    waiting_reversi = True
-    # wait for choosing the flip direction.
-    while waiting_reversi:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                exit()
-            if event.type == pygame.MOUSEBUTTONUP:
-                grid = get_location((event.pos[0], event.pos[1]))
+    # for i in game.board:
+    #     print(i)
+    if (game.current_turn == BLACK and game.black_ai is True) or (game.current_turn == WHITE and game.white_ai is True):
+        game.reversi(list(game.reversi_choice[random.choice(list(game.reversi_choice))])[0])
+        draw(screen, game.board, game.current_turn)
+        pygame.display.flip()
 
-                if game.is_valid(grid, REVERSI_CHOICE):
-                    game.reversi(grid)
+        if game.is_end():
+            show_result(screen, game)
+    else:
+        waiting_reversi = True
+        # wait for choosing the flip direction.
+        while waiting_reversi:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    exit()
+                if event.type == pygame.MOUSEBUTTONUP:
+                    if not GRID <= event.pos[1] < HEIGHT - GRID or not GRID <= event.pos[0] < WIDTH - GRID:
+                        print('Not a board grid')
+                        continue
+                    grid = get_location((event.pos[1], event.pos[0]))
+                    if game.is_valid(grid, REVERSI_CHOICE):
+                        game.reversi(grid)
+                        draw(screen, game.board, game.current_turn)
+                        pygame.display.flip()
+                        waiting_reversi = False
 
-                    draw(screen, game.board, game.current_turn)
-                    pygame.display.flip()
-                    waiting_reversi = False
-
-                    if game.is_end():
-                        show_result(screen, game)
+                        if game.is_end():
+                            show_result(screen, game)
     wait_move(game, screen)
     return
+
 
 
 if __name__ == '__main__':
