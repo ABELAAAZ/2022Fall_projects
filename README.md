@@ -11,7 +11,7 @@ AI vs AI, human vs AI, human vs human.
 If there is at least one AI player, you are allowed to set the MAX_DEPTH as the difficulty (Default: 1) in the reversi_gme.py. 
 
 **The original rules**:    
-At the start of the game there are four pieces on the board, two white and two black. You must try to capture opponent pieces and flip them over so they turn into your color. You do this by making a horizontal, vertical, or diagonal line of pieces, where your pieces surround the other player's pieces. The surrounded opponent pieces are then captured and will be flipped over to your color, increasing the number of your pieces on the board. ( See the details and have a try: https://cardgames.io/reversi/ )    
+At the start of the game there are four pieces on the board, two white and two black. You must try to capture opponent pieces and flip them over so they turn into your color. You do this by making a horizontal, vertical, or diagonal line of pieces, where your pieces surround the other player's pieces. The surrounded opponent pieces are then captured and will be flipped over to your color, increasing the number of your pieces on the board. If you don't have valid place to drop the piece, the game will skip your turn, if your opponent can not drop the piece too, game ends, the winner goes to the player has more pieces right now.  ( See the details and have a try: https://cardgames.io/reversi/ )    
 ### New Game rules:   
 #### **1. Reversi in one direction**        
 unlike flip over the opponent' s pieces in all eight directions, our game allow the player to flip over pieces in only **one** direction. So after you drop your piece, the program will show all the valid reversi direction and ask you to choose one direction to flip over.       
@@ -36,6 +36,13 @@ In the following two cases, only first two black pieces could be flipped over. B
 In this case, four black pieces could be flipped over, the two black pieces with red check mark were flipped over by the reward.   
 <div align=center><img width=50% src='./imggif/reward_invalid3.jpg'></div>   
 
+## Data Structure:   
+We used Object to represent our game (Reversi_class.py)    
+Used number to represent each piece type:     
+1:BLACK piece(color:black), -1:WHITE piece(color:white), 0: empty space(no color), 2: valid place that you can drop your piece(color:grey), 3:valid opponent's pieces that you can flip over(color:orange)    
+in the game object, we have board variable which is a 2-D list to record current stage, how the board looks like.
+
+
 
 ## MiniMax Analysis:   
 TODO
@@ -54,6 +61,13 @@ TODO
 
 
 ## Time and Space complexity:   
+
+
+
+## Contribution:   
+Yannie implemented the Reverisi game with two new rules, and finished the Pygame part.    
+Bill made the AI player and implemented Minimax algorithm.      
+
    
       
          
