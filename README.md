@@ -17,25 +17,24 @@ At the start of the game there are four pieces on the board, two white and two b
 unlike flip over the opponent' s pieces in all eight directions, our game allow the player to flip over pieces in only **one** direction. So after you drop your piece, the program will show all the valid reversi direction and ask you to choose one direction to flip over.       
       
 As the gif below: Now it's BLACK's turn, the grey areas are valid place to drop the piece, after dropping the piece, the orange pieces are the valid pieces you can flip over, the information on the top of the piece represents the direction(U:up, D:down, L:left, R:right) so we know in this case,we can choose L direction to flip two pieces over, or one in UL or one in U.   
-![gif3_reversi choice](https://user-images.githubusercontent.com/57131147/205403834-52d17a9b-d519-4ffc-a057-09d0a84808bb.gif)
+<div align=center><img width=50% src='./imggif/reversi_choice.gif'></div>    
 
 
 #### **2. Reward**      
 if along the choosed direction, you used only one piece to block opponents' piece(s), then you will receive an reward: Continuing the tail in this direction, if there is a possible reversi choice, the program will automatically flip over the opponent' pieces.    
       
-As the gif below, now it's WHITE's turn, the grey areas are valid place to drop the piece, after dropping the piece, we can choose L direction to flip two pieces + one reward piece over, or one in UL or one in U.          
-![gif2_reward](https://user-images.githubusercontent.com/57131147/205404769-faacbb14-4412-47b0-b0b1-3a5d43ab3036.gif)
+As the gif below, now it's WHITE's turn, the grey areas are valid place to drop the piece, after dropping the piece, we can choose L direction to flip two pieces + one reward piece over, or one in UL or one in U.      
+<div align=center><img width=50% src='./imggif/reward.gif'></div>    
 
 
 or in other word:    
 In the following two cases, only first two black pieces could be flipped over. Because WHITE used two pieces to block the BLACK's pieces, WHITE could not get the reward.    
-![微信图片_20221202173018](https://user-images.githubusercontent.com/57131147/205407679-f55d5edb-943f-4cf8-b2bc-5a5b8cf4537e.jpg)
-
-![微信图片_20221202173757](https://user-images.githubusercontent.com/57131147/205409518-c718f2a7-db6f-44a4-a83d-b27248dfc3b6.jpg)
+<div align=center><img width=50% src='./imggif/reward_invalid.jpg'></div>   
+<div align=center><img width=50% src='./imggif/reward_invalid2.jpg'></div>    
 
 
 In this case, four black pieces could be flipped over, the two black pieces with red check mark were flipped over by the reward.   
-![微信图片_202212021730182](https://user-images.githubusercontent.com/57131147/205407730-500eabaa-433d-41fc-beff-f923652b663a.jpg)
+<div align=center><img width=50% src='./imggif/reward_invalid3.jpg'></div>   
 
 
 ## MiniMax Analysis:   
