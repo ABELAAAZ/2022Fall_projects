@@ -46,11 +46,14 @@ TODO
 ## How to run program:   
 1. First clone our program in your local device.Make sure you have pip install all requirement packages(pygame).      
 2. Run Reversi_game.py, follow the console step to enter specific information.   
-![image](https://user-images.githubusercontent.com/57131147/205402389-61660ea6-e4e3-4e28-92f3-f1697542b0fa.png)
+<div align=center><img width=50% src='./imggif/console.png'></div>   
+
 
 4. Then enjoy the game in the pop out window.    
-![image](https://user-images.githubusercontent.com/57131147/205402413-03074bac-267f-45d8-bff5-13315cf8b99d.png)
+<div align=center><img width=40% src='./imggif/game_start.png'></div>   
 
 
 ## Time and Space complexity:   
-
+   
+      
+         
