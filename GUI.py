@@ -1,10 +1,11 @@
 import pygame
 
+
 WIDTH = 600
 HEIGHT = 600
 GRID = (WIDTH - WIDTH / 5) / 8  # grid size = 60
 PIECE_RADIUS = int(0.8 * GRID / 2)  # radius = 24
-FPS = 3
+FPS = 30
 BLACK = 1
 WHITE = -1
 VALID_MOVE = 2
@@ -54,8 +55,22 @@ def draw(surf, board, turn, is_reversi=False, choices=None):
 
 
 def show_result(surf, game):
+    surf = pygame.display.set_mode((WIDTH, HEIGHT))
+    surf.fill((42, 110, 63))
+    for i in range(1, 10):
+        pygame.draw.line(surf, (0, 0, 0), (GRID * i, GRID), (GRID * i, WIDTH - GRID))
+        pygame.draw.line(surf, (0, 0, 0), (GRID, GRID * i), (HEIGHT - GRID, GRID * i))
+
+    for i in range(8):
+        for j in range(8):
+            if game.board[i][j] != 0:
+                pygame.draw.circle(surf, PIECE_COLOR[game.board[i][j]], ((j + 1 + 0.5) * GRID, (i + 1 + 0.5) * GRID),
+                                   PIECE_RADIUS,
+                                   width=PIECE_RADIUS)
+
     repre = {1: "BLACK", -1: "WHITE", 0: "TIE"}
     winner = repre[game.winner]
+
     f = pygame.font.SysFont("Calibri", 20, bold=False, italic=False)
     textwinner = f"WINNER:{winner} "
     textcalculation = f"BLACK pieces:{game.black_count}      WHITE pieces:{game.white_count} "

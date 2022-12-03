@@ -129,3 +129,84 @@ def minimax(game, depth, maximizing_player, maximizing_color):
                 # print('level', depth, current_eval, move, choice, min_eval)
             game = copy.deepcopy(temp_game_move)
         return best_move, min_eval
+
+
+def MiniMaxAlphaBeta(game, depth, maximizing_color):
+    alpha = -inf
+    beta = inf
+
+    best_move = None
+    best_choice = None
+    max_eval = -inf
+    temp_game_move = copy.deepcopy(game)
+    for move in list(game.valid_move):
+        game.move(move)
+        temp_game_reversi = copy.deepcopy(game)
+        for choice in list(game.reversi_choice):
+            game.reversi(list(game.reversi_choice[choice])[0])
+            current_eval = minimizeBeta(game, depth - 1, alpha, beta, maximizing_color)
+            game = copy.deepcopy(temp_game_reversi)
+            if current_eval > max_eval:
+                max_eval = current_eval
+                best_move = move
+                best_choice = choice
+            # print( 'level',depth,current_eval,move,choice,max_eval)
+        game = copy.deepcopy(temp_game_move)
+
+    return best_move, best_choice
+
+
+def minimizeBeta(game, depth, a, b, maximizing_color):
+    if depth == 0 or game.is_end():
+        e = evaluate(game, maximizing_color)
+        return e
+
+    if depth != MAX_DEPTH and not game.get_valid_moves():
+        eval = maximizeAlpha(game, depth - 1, a, b, maximizing_color)
+        return eval
+
+    beta = b
+
+    temp_game_move = copy.deepcopy(game)
+    for move in list(game.valid_move):
+        game.move(move)
+        temp_game_reversi = copy.deepcopy(game)
+        for choice in list(game.reversi_choice):
+            current_eval = inf
+            if a < beta:
+                game.reversi(list(game.reversi_choice[choice])[0])
+                current_eval = maximizeAlpha(game, depth - 1, a, beta, maximizing_color)
+                game = copy.deepcopy(temp_game_reversi)
+            if current_eval < beta:
+                beta = current_eval
+            # print('level', depth, current_eval, move, choice, min_eval)
+        game = copy.deepcopy(temp_game_move)
+    return beta
+
+
+def maximizeAlpha(game, depth, a, b, maximizing_color):
+    if depth == 0 or game.is_end():
+        e = evaluate(game, maximizing_color)
+        return e
+
+    if depth != MAX_DEPTH and not game.get_valid_moves():
+        eval = minimizeBeta(game, depth - 1, a, b, maximizing_color)
+        return eval
+
+    alpha = a
+
+    temp_game_move = copy.deepcopy(game)
+    for move in list(game.valid_move):
+        game.move(move)
+        temp_game_reversi = copy.deepcopy(game)
+        for choice in list(game.reversi_choice):
+            current_eval = inf
+            if alpha < b:
+                game.reversi(list(game.reversi_choice[choice])[0])
+                current_eval = minimizeBeta(game, depth - 1, alpha, b, maximizing_color)
+                game = copy.deepcopy(temp_game_reversi)
+            if current_eval > alpha:
+                alpha = current_eval
+            # print('level', depth, current_eval, move, choice, min_eval)
+        game = copy.deepcopy(temp_game_move)
+    return alpha
