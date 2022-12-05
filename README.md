@@ -8,7 +8,7 @@ Billhonam Wong/ bhwong3
 **project type**:  2    
 **Flexiblity**:    
 AI vs AI, human vs AI, human vs human.      
-If there is at least one AI player, you are allowed to set the MAX_DEPTH as the difficulty (Default: 1) in the reversi_gme.py. 
+If there is at least one AI player, you are allowed to set the MAX_DEPTH as the difficulty (Default: 3) in the reversi_gme.py. 
 
 **The original rules**:    
 At the start of the game there are four pieces on the board, two white and two black. You must try to capture opponent pieces and flip them over so they turn into your color. You do this by making a horizontal, vertical, or diagonal line of pieces, where your pieces surround the other player's pieces. The surrounded opponent pieces are then captured and will be flipped over to your color, increasing the number of your pieces on the board. If you don't have valid place to drop the piece, the game will skip your turn, if your opponent can not drop the piece too, game ends, the winner goes to the player has more pieces right now.  ( See the details and have a try: https://cardgames.io/reversi/ )    
