@@ -63,7 +63,8 @@ Negative Score: Squares surround corners
 <div align=center><img width=40% src='./imggif/game_start.png'></div>   
 
 4. When game ends, it will look like this:
-![image](https://user-images.githubusercontent.com/57131147/205680171-60c14fb5-f385-46ce-b075-41e8b69c04fd.png)
+5. <div align=center><img width=40% src='./imggif/Snipaste_2022-12-05_09-50-08.png'></div>   
+
 
 
 
