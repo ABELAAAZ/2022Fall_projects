@@ -41,7 +41,7 @@ def evaluate(game, maximizing_color):
         return black_score - white_score
     else:
         return white_score - black_score
-
+"""
 def minimax(game, depth, maximizing_player, maximizing_color):
     if depth == 0 or game.is_end():
         e=evaluate(game, maximizing_color)
@@ -94,7 +94,7 @@ def minimax(game, depth, maximizing_player, maximizing_color):
                     best_move = move
                 # print('level', depth, current_eval, move, choice, min_eval)
             game = copy.deepcopy(temp_game_move)
-        return best_move, min_eval
+        return best_move, min_eval"""
 
 
 def MiniMaxAlphaBeta(game, depth, maximizing_color):

@@ -172,7 +172,7 @@ class Othello:
 
     def is_end(self):
         # there are two situations could end the game, if so, call the win_loss to give the winner.
-        if self.black_count + self.white_count == SIZE * SIZE or self.stalemate == 2:
+        if self.black_count + self.white_count == SIZE *SIZE or self.stalemate == 2:
             self.win_loss()
             return True
         else:
