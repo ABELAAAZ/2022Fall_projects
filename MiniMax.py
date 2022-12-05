@@ -1,4 +1,3 @@
-
 from math import inf
 import copy
 from Reversi_game import MAX_DEPTH
@@ -10,8 +9,8 @@ WHITE = -1
 def evaluate(game, maximizing_color):
     black_score = 0
     white_score = 0
-    for x in range(0, 7):
-        for y in range(0, 7):
+    for x in range(0, 8):
+        for y in range(0, 8):
             if (x, y) in ((0, 0), (0, 7), (7, 0), (7, 7)):
                 if game.board[x][y] == BLACK:
                     black_score += 50
@@ -37,44 +36,11 @@ def evaluate(game, maximizing_color):
                     black_score += 3
                 elif game.board[x][y] == WHITE:
                     white_score += 3
+
     if maximizing_color == BLACK:
         return black_score - white_score
     else:
         return white_score - black_score
-
-
-    # for x, y in ((0, 0), (0, 7), (7, 0), (7, 7)):
-    #     if game.board[x][y] == BLACK:
-    #         black_score += 20
-    #     else:
-    #         white_score += 20
-    # for x in range(1, 6):
-    #     if game.board[x][0] == BLACK:
-    #         black_score += 10
-    #     else:
-    #         white_score += 10
-    #     if game.board[x][7] == BLACK:
-    #         black_score += 10
-    #     else:
-    #         white_score += 10
-    #
-    # for y in range(1, 6):
-    #     if game.board[0][y] == BLACK:
-    #         black_score += 10
-    #     else:
-    #         white_score += 10
-    #     if game.board[7][y] == BLACK:
-    #         black_score += 10
-    #     else:
-    #         white_score += 10
-    #
-    # for x in range(1, 6):
-    #     for y in range(1, 6):
-    #         if game.board[x][y] == BLACK:
-    #             black_score += 2
-    #         else:
-    #             white_score += 2
-
 
 def minimax(game, depth, maximizing_player, maximizing_color):
     if depth == 0 or game.is_end():

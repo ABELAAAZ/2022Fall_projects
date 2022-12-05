@@ -28,7 +28,6 @@ def start_game():
 
     clock = pygame.time.Clock()
     clock.tick(FPS)
-    print(MAX_DEPTH)
     # initial the board class
     game = Othello(black_ai=black_setting, white_ai=white_setting)
 

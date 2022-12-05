@@ -60,7 +60,14 @@ TODO
 <div align=center><img width=40% src='./imggif/game_start.png'></div>   
 
 
-## Time and Space complexity:   
+## Time complexity:
+<div align=center><img width=50% src='./imggif/board.png'></div>
+Time complexity of the evaluation function: N^2<br/>
+Positive: Corner Edge Middle<br/>
+Negative: Squares surround corners<br/>
+<br/>
+Statistics of functions:
+<div align=center><img width=100% src='./imggif/statistics.png'></div>
 
 
 
