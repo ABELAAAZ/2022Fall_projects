@@ -45,28 +45,30 @@ in the game object, we have board variable which is a 2-D list to record current
 
 
 ## MiniMax Analysis:   
-TODO
+<div align=center><img width=50% src='./imggif/board.png'></div>   
+
+Positive Score: Corner,  Edge,  Middle     
+Negative Score: Squares surround corners   
    
    
 
    
 ## How to run program:   
-1. First clone our program in your local device.Make sure you have pip install all requirement packages(pygame).      
+1. First clone our program in your local device.Make sure you have pip install all required packages(pygame).      
 2. Run Reversi_game.py, follow the console step to enter specific information.   
 <div align=center><img width=50% src='./imggif/console.png'></div>   
 
 
-4. Then enjoy the game in the pop out window.    
+3. Then enjoy the game in the pop out window.    
 <div align=center><img width=40% src='./imggif/game_start.png'></div>   
 
 
 ## Time complexity:
-<div align=center><img width=50% src='./imggif/board.png'></div>
-Time complexity of the evaluation function: N^2<br/>
-Positive: Corner Edge Middle<br/>
-Negative: Squares surround corners<br/>
-<br/>
-Statistics of functions:
+
+    
+Time complexity of the evaluation function: N^2      
+
+### Statistics of functions:    
 <div align=center><img width=100% src='./imggif/statistics.png'></div>
 
 
