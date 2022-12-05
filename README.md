@@ -62,6 +62,10 @@ Negative Score: Squares surround corners
 3. Then enjoy the game in the pop out window.    
 <div align=center><img width=40% src='./imggif/game_start.png'></div>   
 
+4. When game ends, it will look like this:
+![image](https://user-images.githubusercontent.com/57131147/205680171-60c14fb5-f385-46ce-b075-41e8b69c04fd.png)
+
+
 
 ## Time complexity:
 
