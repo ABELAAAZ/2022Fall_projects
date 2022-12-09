@@ -94,7 +94,8 @@ def minimax(game, depth, maximizing_player, maximizing_color):
                     best_move = move
                 # print('level', depth, current_eval, move, choice, min_eval)
             game = copy.deepcopy(temp_game_move)
-        return best_move, min_eval"""
+        return best_move, min_eval
+"""
 
 
 def MiniMaxAlphaBeta(game, depth, maximizing_color):
@@ -127,7 +128,7 @@ def minimizeBeta(game, depth, a, b, maximizing_color):
         e = evaluate(game, maximizing_color)
         return e
 
-    if depth != MAX_DEPTH and not game.get_valid_moves():
+    if not game.get_valid_moves():
         eval = maximizeAlpha(game, depth - 1, a, b, maximizing_color)
         return eval
 
@@ -155,7 +156,7 @@ def maximizeAlpha(game, depth, a, b, maximizing_color):
         e = evaluate(game, maximizing_color)
         return e
 
-    if depth != MAX_DEPTH and not game.get_valid_moves():
+    if not game.get_valid_moves():
         eval = minimizeBeta(game, depth - 1, a, b, maximizing_color)
         return eval
 

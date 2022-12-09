@@ -31,26 +31,27 @@ def start_game():
     # initial the board class
     game = Othello(black_ai=black_setting, white_ai=white_setting)
 
-    draw(screen, game.board, BLACK)
+    draw(game.board, BLACK)
     pygame.display.flip()
 
     # start the game, BLACK goes first
-    wait_move(game, screen)
+    wait_move(game)
 
 
-def wait_move(game, screen):
+def wait_move(game):
     if not game.get_valid_moves():
         if game.is_end():
-            show_result(screen, game)
-        wait_move(game, screen)
-    draw(screen, game.board, game.current_turn)
+            show_result(game)
+        wait_move(game)
+    draw(game.board, game.current_turn)
     pygame.display.flip()
 
+    best_choice = None
     if (game.current_turn == BLACK and game.black_ai is True) or (game.current_turn == WHITE and game.white_ai is True):
         time.sleep(0.800)
-        best_move = MiniMax.minimax(copy.deepcopy(game), MAX_DEPTH, True, game.current_turn)[0]
+        best_move, best_choice = MiniMax.MiniMaxAlphaBeta(copy.deepcopy(game), MAX_DEPTH, game.current_turn)
         game.move(best_move)
-        draw(screen, game.board, game.current_turn, True, game.reversi_choice)
+        draw(game.board, game.current_turn, True, game.reversi_choice)
         pygame.display.flip()
 
     else:
@@ -66,21 +67,22 @@ def wait_move(game, screen):
                     grid = get_location((event.pos[1], event.pos[0]))
                     if game.is_valid(grid, VALID_MOVE):
                         game.move(grid)
-                        draw(screen, game.board, game.current_turn, True, game.reversi_choice)
+                        draw(game.board, game.current_turn, True, game.reversi_choice)
                         pygame.display.flip()
                         waiting_move = False
-    wait_reversi(game, screen)
+    wait_reversi(game, best_choice)
 
 
-def wait_reversi(game, screen):
+def wait_reversi(game, best_choice):
     if (game.current_turn == BLACK and game.black_ai is True) or (game.current_turn == WHITE and game.white_ai is True):
         time.sleep(0.800)
-        game.reversi(list(game.reversi_choice[random.choice(list(game.reversi_choice))])[0])
-        draw(screen, game.board, game.current_turn)
+        #game.reversi(list(game.reversi_choice[random.choice(list(game.reversi_choice))])[0])
+        game.reversi(list(game.reversi_choice[best_choice])[0])
+        draw(game.board, game.current_turn)
         pygame.display.flip()
 
         if game.is_end():
-            show_result(screen, game)
+            show_result(game)
     else:
         waiting_reversi = True
         # wait for choosing the flip direction.
@@ -95,14 +97,14 @@ def wait_reversi(game, screen):
                     grid = get_location((event.pos[1], event.pos[0]))
                     if game.is_valid(grid, REVERSI_CHOICE):
                         game.reversi(grid)
-                        draw(screen, game.board, game.current_turn)
+                        draw(game.board, game.current_turn)
                         pygame.display.flip()
                         time.sleep(0.200)
                         waiting_reversi = False
 
                         if game.is_end():
-                            show_result(screen, game)
-    wait_move(game, screen)
+                            show_result(game)
+    wait_move(game)
     return
 
 

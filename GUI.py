@@ -15,7 +15,7 @@ DIRECTION_NO = {(0, -1): "L", (0, 1): "R", (-1, 0): "U", (1, 0): "D", (1, 1): "D
                 (1, -1): "DL"}
 
 
-def draw(surf, board, turn, is_reversi=False, choices=None):
+def draw(board, turn, is_reversi=False, choices=None):
     surf = pygame.display.set_mode((WIDTH, HEIGHT))
     surf.fill((42, 110, 63))
     for i in range(1, 10):
@@ -54,7 +54,7 @@ def draw(surf, board, turn, is_reversi=False, choices=None):
     return surf
 
 
-def show_result(surf, game):
+def show_result(game):
     surf = pygame.display.set_mode((WIDTH, HEIGHT))
     surf.fill((42, 110, 63))
     for i in range(1, 10):
