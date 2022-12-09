@@ -17,7 +17,7 @@ At the start of the game there are four pieces on the board, two white and two b
 unlike flip over the opponent' s pieces in all eight directions, our game allow the player to flip over pieces in only **one** direction. So after you drop your piece, the program will show all the valid reversi direction and ask you to choose one direction to flip over.       
       
 As the gif below: Now it's BLACK's turn, the grey areas are valid place to drop the piece, after dropping the piece, the orange pieces are the valid pieces you can flip over, the information on the top of the piece represents the direction(U:up, D:down, L:left, R:right) so we know in this case,we can choose L direction to flip two pieces over, or one in UL or one in U.   
-<div align=center><img width=50% src='./imggif/reversi_choice.gif'></div>    
+<div align=center><img width=50% src='./imggif/reversi_choice2.gif'></div>    
 
 
 #### **2. Reward**      
@@ -60,7 +60,7 @@ Negative Score: Squares surround corners
 
 
 3. Then enjoy the game in the pop out window.    
-<div align=center><img width=40% src='./imggif/game_start.png'></div>   
+<div align=center><img width=40% src='./imggif/start.png'></div>   
 
 4. When game ends, it will look like this:
 5. <div align=center><img width=40% src='./imggif/Snipaste_2022-12-05_09-50-08.png'></div>   
