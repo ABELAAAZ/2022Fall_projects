@@ -56,11 +56,11 @@ Negative Score: Squares surround corners
 ## How to run program:   
 1. First clone our program in your local device.Make sure you have pip install all required packages(pygame).      
 2. Run Reversi_game.py, follow the console step to enter specific information.   
-<div align=center><img width=50% src='./imggif/console.png'></div>   
+<div align=center><img width=50% src='./imggif/start.png'></div>   
 
 
 3. Then enjoy the game in the pop out window.    
-<div align=center><img width=40% src='./imggif/start.png'></div>   
+<div align=center><img width=40% src='./imggif/game_start.png'></div>   
 
 4. When game ends, it will look like this:
 5. <div align=center><img width=40% src='./imggif/Snipaste_2022-12-05_09-50-08.png'></div>   
