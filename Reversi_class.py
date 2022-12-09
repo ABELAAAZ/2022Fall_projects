@@ -24,6 +24,9 @@ class Othello:
         self.stalemate = 0
 
     def get_valid_moves_backtrack(self, row, col, direction, visited, flag):
+        """
+        Called in get_valid_moves. For each owned pieces on the board, use backtrack to find the valid place.
+        """
         if not 0 <= row < SIZE or not 0 <= col < SIZE:
             return False
         if visited[row][col]:
@@ -45,7 +48,12 @@ class Othello:
 
         return False
 
-    def get_valid_moves(self):
+    def get_valid_moves(self)->bool:
+        """
+        For the current player, try to find the valid places to drop the piece. if there is at least one valid place,
+        return true, otherwise, false.
+        :return: boolean
+        """
         ans = False
         for d in DIRECTION:
             visited = [[False for _ in range(SIZE)] for _ in range(SIZE)]
@@ -61,6 +69,14 @@ class Othello:
         return ans
 
     def is_valid(self, grid, color):
+        """
+        Check if the place user clicked is valid: when in the wait_move function, call is_valid to check if the place
+        color is grey, and when in the wait_reversi function, call is_valid to check if the direction is a valid choice
+        to reversi. if is valid, return true otherwise false
+        :param grid:the grid user chose
+        :param color: the color of the grid(the piece type of the grid)
+        :return: boolean
+        """
         (row, col) = grid
         if self.board[row][col] == color:
             return True
@@ -68,6 +84,11 @@ class Othello:
             return False
 
     def move(self, grid):
+        """
+        Drop the piece,update the board information and call the get_reversi_choice to create the valid reversi_choice.
+        :param grid: the grid user chose
+        :return:
+        """
         while self.valid_move:
             (r, c) = self.valid_move.pop()
             self.board[r][c] = 0
@@ -86,6 +107,11 @@ class Othello:
         return
 
     def get_reversi_choice(self, grid):
+        """
+        create the valid reversi_choice.
+        :param grid: the grid user chose
+        :return:
+        """
         # see how many reversi choice are there, and the player could only flip over in one direction
         (row, col) = grid
         for (x, y) in DIRECTION:
@@ -123,6 +149,11 @@ class Othello:
         return
 
     def reversi(self, grid):
+        """
+        flip over the opponent's pieces.
+        :param grid: the grid user chose
+        :return:
+        """
         choice = None
         for key, values in self.reversi_choice.items():
             if grid in values:
@@ -151,6 +182,11 @@ class Othello:
         return
 
     def unmake_reversi(self, choice):
+        """
+        A helper for minimax to undo something.
+        :param choice:
+        :return:
+        """
         if self.current_turn == BLACK:
             self.black_count -= len(self.reversi_choice[choice])
             self.white_count += len(self.reversi_choice[choice])
@@ -170,7 +206,11 @@ class Othello:
                 self.white_set.remove((g[0], g[1]))
         return
 
-    def is_end(self):
+    def is_end(self)->bool:
+        """
+        Check if the game ends, board is full or no move for the last two turns.
+        :return: if game ends, call the win_loss to annouce the winner, and return True, otherwise False
+        """
         # there are two situations could end the game, if so, call the win_loss to give the winner.
         if self.black_count + self.white_count == SIZE *SIZE or self.stalemate == 2:
             self.win_loss()
@@ -179,6 +219,9 @@ class Othello:
             return False
 
     def win_loss(self):
+        """
+        Return the player who has more pieces on the board. If same, return 0 represent a TIE
+        """
         if self.black_count > self.white_count:
             self.winner = BLACK
         elif self.black_count < self.white_count:

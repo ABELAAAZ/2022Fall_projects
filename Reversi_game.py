@@ -6,7 +6,7 @@ import random
 import time
 
 # if there is AI player, we can set the game difficulty -- depth of the minimax
-MAX_DEPTH = 3
+MAX_DEPTH = None
 
 
 def start_game():
@@ -16,11 +16,22 @@ def start_game():
         print('You must enter 1 or 0')
         black_setting = int(input('Black side: Enter 1 to set black side to AI, 0 to human player:'))
     black_setting = True if black_setting == 1 else False
+
     white_setting = int(input('WHITE side: Enter 1 to set WHITE side to AI, 0 to human player:'))
     while white_setting not in [0, 1]:
         print('You must enter 1 or 0')
         white_setting = int(input('WHITE side: Enter 1 to set WHITE side to AI, 0 to human player:'))
     white_setting = True if white_setting == 1 else False
+
+    difficulty=0
+    if white_setting or black_setting:
+        difficulty = int(input('Enter the difficulty of the game 1-4(3 is the medium level)'))
+        while not 1<=difficulty <=4:
+            print('You must enter from 1 to 4')
+            difficulty = int(input('Enter the difficulty of the game 1-4(3 is the medium level)'))
+        print(f'The difficulty of AI will be at level{difficulty}')
+    global MAX_DEPTH
+    MAX_DEPTH=difficulty
 
     pygame.init()
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -39,6 +50,13 @@ def start_game():
 
 
 def wait_move(game):
+    """
+    Wait the current player to drop his piece, then show the valid reversi_choice,then call the wait_reversi function.
+    if there is no valid place to drop piece, skip this turn, turn to opponents' turn. If for both player can not drop
+    the piece (stalemate situation) then end the game
+    :param game: the game object
+    :return:
+    """
     if not game.get_valid_moves():
         if game.is_end():
             show_result(game)
@@ -74,6 +92,12 @@ def wait_move(game):
 
 
 def wait_reversi(game, best_choice):
+    """
+    Wait the current player to reversi pieces in one direction, then call the wait_reversi function.
+    :param game:
+    :param best_choice:
+    :return:
+    """
     if (game.current_turn == BLACK and game.black_ai is True) or (game.current_turn == WHITE and game.white_ai is True):
         time.sleep(0.800)
         #game.reversi(list(game.reversi_choice[random.choice(list(game.reversi_choice))])[0])

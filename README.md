@@ -24,7 +24,7 @@ As the gif below: Now it's BLACK's turn, the grey areas are valid place to drop 
 if along the choosed direction, you used only one piece to block opponents' piece(s), then you will receive an reward: Continuing the tail in this direction, if there is a possible reversi choice, the program will automatically flip over the opponent' pieces.    
       
 As the gif below, now it's WHITE's turn, the grey areas are valid place to drop the piece, after dropping the piece, we can choose L direction to flip two pieces + one reward piece over, or one in UL or one in U.      
-<div align=center><img width=50% src='./imggif/reward.gif'></div>    
+<div align=center><img width=50% src='./imggif/gif3_reward.gif'></div>    
 
 
 or in other word:    

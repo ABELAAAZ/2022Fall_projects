@@ -16,6 +16,9 @@ DIRECTION_NO = {(0, -1): "L", (0, 1): "R", (-1, 0): "U", (1, 0): "D", (1, 1): "D
 
 
 def draw(board, turn, is_reversi=False, choices=None):
+    """
+    update the pygame to show the latest game stage.
+    """
     surf = pygame.display.set_mode((WIDTH, HEIGHT))
     surf.fill((42, 110, 63))
     for i in range(1, 10):
@@ -54,7 +57,11 @@ def draw(board, turn, is_reversi=False, choices=None):
     return surf
 
 
+
 def show_result(game):
+    """
+    Show the final winnerboard. with the annoucement and final stage of the board.
+    """
     surf = pygame.display.set_mode((WIDTH, HEIGHT))
     surf.fill((42, 110, 63))
     for i in range(1, 10):
@@ -93,6 +100,11 @@ def show_result(game):
 
 
 def get_location(coordinate):
+    """
+    Calculate the actual row,column on the board of the area the user clicked on.
+    :param coordinate: the place where the user click
+    :return:
+    """
     (x, y) = coordinate
     row = int(x // GRID) - 1
     col = int(y // GRID) - 1
