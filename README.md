@@ -82,6 +82,9 @@ Time complexity of the evaluation function: N^2
 Yannie implemented the Reverisi game with two new rules, and finished the Pygame part.    
 Bill made the AI player and implemented Minimax algorithm.      
 
-   
-      
+## References:   
+https://www.geeksforgeeks.org/introduction-to-pygame/     
+https://www.geeksforgeeks.org/python-display-text-to-pygame-window/?ref=lbp     
+https://github.com/Teifion/Reversi     
+https://docs.google.com/presentation/d/1XOsBWRYGpqSGHOAUagH1GKzPIHzl2L5yPVETOrAtcQU/mobilepresent?slide=id.p     
          
