@@ -71,7 +71,7 @@ Negative Score: Squares surround corners
 ## Time complexity:
 
     
-Time complexity of the evaluation function: N^2      
+Time complexity of the evaluation function: N^3      
 
 ### Statistics of functions:    
 <div align=center><img width=100% src='./imggif/statistics.png'></div>
