@@ -69,9 +69,10 @@ Negative Score: Squares surround corners
 
 
 ## Time complexity:
-
     
-Time complexity of the evaluation function: N^3      
+Time complexity of the evaluation function: N^3
+For Minimax's heuristic function, we traverse the entire board when calculating the score, which has a time complexity of N^2. Also, for each iteration, we need to find out if there are any pieces in the corners and their surrounding positions, which has a time complexity of about N, so the overall time complexity of the function is N^3.
+
 
 ### Statistics of functions:    
 <div align=center><img width=100% src='./imggif/statistics.png'></div>
